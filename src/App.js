@@ -52,11 +52,11 @@ function App() {
             <td><input className='button' type="button" value='1' onClick="insert(1)"/></td>
             <td><input className='button' type="button" value='2' onClick="insert(2)"/></td>
             <td><input className='button' type="button" value='3' onClick="insert(3)"/></td>
-            <td rowSpan="5"><input className='button' style='height: 108px' type="button" value='=' onClick="equal()"/>
+            <td rowSpan="5"><input className='button'   type="button" value='=' onClick="equal()"/>
             </td>
           </tr>
           <tr>
-            <td colSpan="2"><input className='button' style="width: 106px" type="button" value='0' onClick="insert(0)"/>
+            <td colSpan="2"><input className='button'   type="button" value='0' onClick="insert(0)"/>
             </td>
             <td><input className='button' type="button" value='.' onClick="insert('.')"/></td>
           </tr>
