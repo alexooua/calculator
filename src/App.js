@@ -7,29 +7,48 @@ class App extends React.Component {
         val: ""
     }
     insert = (e) => {
+        if (this.state.val==="error"){
+            let num =e.currentTarget.value
+            this.setState({
+                val:num
+            })
 
-        debugger
-         const num = this.state.val + e.currentTarget.value
-
-        this.setState({
-            val:num
-        })
-    };
-
-    equal = () => {
-        let exp = this.state.val;
-        if (exp) {
-            this.state.val = eval(exp);
+        }else {
+            let num = this.state.val + e.currentTarget.value
+            this.setState({
+                val: num
+            })
         }
     };
 
+
+    equal = () => {
+        let num=String(this.state.val)
+        if(num[num.length-1].match(/[0-9]/)){
+            num=eval(num)
+            this.setState({
+                val:num
+            })
+        }else {
+            this.setState({
+                val:"error"
+            })
+        }
+
+    };
+
     clean = () => {
-        this.state.val = '';
+        this.setState({
+            val:""
+        })
     };
 
     back = () => {
-        let exp = this.state.val;
-        this.state.val = exp.substring(0, exp.length - 1)
+        let num= this.state.val+""
+        num = num.substring(0, num.length - 1)
+        this.setState({
+            val:num
+        })
     };
     render = () => {
 
@@ -39,40 +58,36 @@ class App extends React.Component {
                 <div className='bg'></div>
                 <div className='main'>
 
-                    <input className='textview' name="textview" value={this.state.val}/>
+                    <input className='textView' placeholder={'enter'}  value={this.state.val}/>
 
                     <table>
                         <tr>
-                            <td><input className='button' type="button" value='C' onClick={this.clean}/></td>
-                            <td><input className='button' type="button" value='<' onClick={this.back}/></td>
-                            <td><input className='button' type="button" value='/' onClick={this.insert}/></td>
-                            <td><input className='button' type="button" value='x' onClick={this.insert}/></td>
+                            <td><button className='button'  onClick={this.clean}>C</button></td>
+                            <td><button className='button' value='<' onClick={this.back}>{'<'}</button></td>
+                            <td><button className='button' value='/' onClick={this.insert}>/</button></td>
+                            <td><button className='button' value='*' onClick={this.insert}>*</button></td>
                         </tr>
                         <tr>
-                            <td>
-                                <button className='button' type="button" value={7} onClick={this.insert}>7</button>
-                            </td>
-                            <td><input className='button' type="button" value='8' onClick="insert(8)"/></td>
-                            <td><input className='button' type="button" value='9' onClick="insert(9)"/></td>
-                            <td><input className='button' type="button" value='-' onClick="insert('-')"/></td>
+                            <td><button className='button' value='7' onClick={this.insert}>7</button></td>
+                            <td><button className='button' value='8' onClick={this.insert}>8</button></td>
+                            <td><button className='button' value='9' onClick={this.insert}>9</button></td>
+                            <td><button className='button' value='-' onClick={this.insert}>-</button></td>
                         </tr>
                         <tr>
-                            <td><input className='button' type="button" value='4' onClick="insert(4)"/></td>
-                            <td><input className='button' type="button" value='5' onClick="insert(5)"/></td>
-                            <td><input className='button' type="button" value='6' onClick="insert(6)"/></td>
-                            <td><input className='button' type="button" value='+' onClick="insert('+')"/></td>
+                            <td><button className='button' value='4' onClick={this.insert}>4</button></td>
+                            <td><button className='button' value='5' onClick={this.insert}>5</button></td>
+                            <td><button className='button' value='6' onClick={this.insert}>6</button></td>
+                            <td><button className='button' value='+' onClick={this.insert}>+</button></td>
                         </tr>
                         <tr>
-                            <td><input className='button' type="button" value='1' onClick="insert(1)"/></td>
-                            <td><input className='button' type="button" value='2' onClick="insert(2)"/></td>
-                            <td><input className='button' type="button" value='3' onClick="insert(3)"/></td>
-                            <td rowSpan="5"><input className='button'   type="button" value='=' onClick="equal()"/>
-                            </td>
+                            <td><button className='button' value='1' onClick={this.insert}>1</button></td>
+                            <td><button className='button' value='2' onClick={this.insert}>2</button></td>
+                            <td><button className='button' value='3' onClick={this.insert}>3</button></td>
+                            <td rowSpan="5"><button className='button' style ={{height: '108px'}} onClick={this.equal}>=</button></td>
                         </tr>
                         <tr>
-                            <td colSpan="2"><input className='button'   type="button" value='0' onClick="insert(0)"/>
-                            </td>
-                            <td><input className='button' type="button" value='.' onClick="insert('.')"/></td>
+                            <td colSpan="2"><button className='button'  style ={{width: '106px'}} value='0' onClick={this.insert}>0</button></td>
+                            <td><button className='button' value='.' onClick={this.insert}>{"."}</button></td>
                         </tr>
                     </table>
                 </div>
